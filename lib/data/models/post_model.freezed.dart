@@ -21,10 +21,15 @@ PostModel _$PostModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PostModel {
+  @HiveField(0)
   String get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get content => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get authorId => throw _privateConstructorUsedError;
+  @HiveField(3)
   String get createdAt => throw _privateConstructorUsedError;
+  @HiveField(4)
   int get likes => throw _privateConstructorUsedError;
 
   /// Serializes this PostModel to a JSON map.
@@ -43,11 +48,11 @@ abstract class $PostModelCopyWith<$Res> {
       _$PostModelCopyWithImpl<$Res, PostModel>;
   @useResult
   $Res call({
-    String id,
-    String content,
-    String authorId,
-    String createdAt,
-    int likes,
+    @HiveField(0) String id,
+    @HiveField(1) String content,
+    @HiveField(2) String authorId,
+    @HiveField(3) String createdAt,
+    @HiveField(4) int likes,
   });
 }
 
@@ -110,11 +115,11 @@ abstract class _$$PostModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String id,
-    String content,
-    String authorId,
-    String createdAt,
-    int likes,
+    @HiveField(0) String id,
+    @HiveField(1) String content,
+    @HiveField(2) String authorId,
+    @HiveField(3) String createdAt,
+    @HiveField(4) int likes,
   });
 }
 
@@ -169,25 +174,30 @@ class __$$PostModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PostModelImpl extends _PostModel {
   const _$PostModelImpl({
-    required this.id,
-    required this.content,
-    required this.authorId,
-    required this.createdAt,
-    required this.likes,
+    @HiveField(0) required this.id,
+    @HiveField(1) required this.content,
+    @HiveField(2) required this.authorId,
+    @HiveField(3) required this.createdAt,
+    @HiveField(4) required this.likes,
   }) : super._();
 
   factory _$PostModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostModelImplFromJson(json);
 
   @override
+  @HiveField(0)
   final String id;
   @override
+  @HiveField(1)
   final String content;
   @override
+  @HiveField(2)
   final String authorId;
   @override
+  @HiveField(3)
   final String createdAt;
   @override
+  @HiveField(4)
   final int likes;
 
   @override
@@ -230,11 +240,11 @@ class _$PostModelImpl extends _PostModel {
 
 abstract class _PostModel extends PostModel {
   const factory _PostModel({
-    required final String id,
-    required final String content,
-    required final String authorId,
-    required final String createdAt,
-    required final int likes,
+    @HiveField(0) required final String id,
+    @HiveField(1) required final String content,
+    @HiveField(2) required final String authorId,
+    @HiveField(3) required final String createdAt,
+    @HiveField(4) required final int likes,
   }) = _$PostModelImpl;
   const _PostModel._() : super._();
 
@@ -242,14 +252,19 @@ abstract class _PostModel extends PostModel {
       _$PostModelImpl.fromJson;
 
   @override
+  @HiveField(0)
   String get id;
   @override
+  @HiveField(1)
   String get content;
   @override
+  @HiveField(2)
   String get authorId;
   @override
+  @HiveField(3)
   String get createdAt;
   @override
+  @HiveField(4)
   int get likes;
 
   /// Create a copy of PostModel
