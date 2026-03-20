@@ -1,18 +1,19 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive_ce/hive.dart';
+import 'package:hive_ce/hive_ce.dart';
 import 'package:smart_threads/domain/entities/post.dart';
 
 part 'post_model.freezed.dart';
 part 'post_model.g.dart';
 
 @freezed
-class PostModel with _$PostModel {
+@HiveType(typeId: 0)
+abstract class PostModel with _$PostModel {
   const factory PostModel({
-    required String id,
-    required String content,
-    required String authorId,
-    required String createdAt,
-    required int likes,
+    @HiveField(0) required String id,
+    @HiveField(1) required String content,
+    @HiveField(2) required String authorId,
+    @HiveField(3) required String createdAt,
+    @HiveField(4) required int likes,
   }) = _PostModel;
 
   factory PostModel.fromJson(Map<String, dynamic> json) =>
