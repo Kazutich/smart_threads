@@ -2,12 +2,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_ce/hive_ce.dart';
 import 'package:smart_threads/domain/entities/post.dart';
 
-part 'post_model.freezed.dart';
 part 'post_model.g.dart';
+part 'post_model.freezed.dart';
 
 @freezed
 @HiveType(typeId: 0)
 abstract class PostModel with _$PostModel {
+  const PostModel._();
+
   const factory PostModel({
     @HiveField(0) required String id,
     @HiveField(1) required String content,
@@ -19,8 +21,6 @@ abstract class PostModel with _$PostModel {
   factory PostModel.fromJson(Map<String, dynamic> json) =>
       _$PostModelFromJson(json);
 
-  const PostModel._();
-
   Post toEntity() {
     return Post(
       id: id,
@@ -30,29 +30,14 @@ abstract class PostModel with _$PostModel {
       likes: likes,
     );
   }
-}
 
-class PostModelAdapter extends TypeAdapter<PostModel> {
-  @override
-  final int typeId = 0;
-
-  @override
-  PostModel read(BinaryReader reader) {
+  factory PostModel.fromEntity(Post post) {
     return PostModel(
-      id: reader.readString(),
-      content: reader.readString(),
-      authorId: reader.readString(),
-      createdAt: reader.readString(),
-      likes: reader.readInt(),
+      id: post.id,
+      content: post.content,
+      authorId: post.authorId,
+      createdAt: post.createdAt,
+      likes: post.likes,
     );
-  }
-
-  @override
-  void write(BinaryWriter writer, PostModel obj) {
-    writer.writeString(obj.id);
-    writer.writeString(obj.content);
-    writer.writeString(obj.authorId);
-    writer.writeString(obj.createdAt);
-    writer.writeInt(obj.likes);
   }
 }
