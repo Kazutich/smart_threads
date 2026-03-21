@@ -208,7 +208,7 @@ return $default(_that.status,_that.posts,_that.errorMessage);case _:
 
 
 class _FeedState implements FeedState {
-  const _FeedState({this.status = FeedStatus.initial, final  List<Post> posts = const [], this.errorMessage}): _posts = posts;
+  const _FeedState({this.status = FeedStatus.initial, final  List<Post> posts = const <Post>[], this.errorMessage}): _posts = posts;
   
 
 @override@JsonKey() final  FeedStatus status;

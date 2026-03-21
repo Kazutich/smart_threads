@@ -62,10 +62,12 @@ class MyApp extends StatelessWidget {
     final repository = PostRepositoryImpl(local);
 
     return BlocProvider(
-      create: (context) => FeedCubit(repository),
+      create: (context) => FeedCubit(repository)..loadFeed(),
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        ),
         home: const FeedScreen(),
       ),
     );

@@ -9,7 +9,7 @@ enum FeedStatus { initial, loading, success, failure }
 abstract class FeedState with _$FeedState {
   const factory FeedState({
     @Default(FeedStatus.initial) FeedStatus status,
-    @Default([]) List<Post> posts,
+    @Default(<Post>[]) List<Post> posts,
     String? errorMessage,
   }) = _FeedState;
 }
