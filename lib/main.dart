@@ -22,7 +22,9 @@ Future<void> main() async {
 
 Future<void> _seedIfEmpty() async {
   final box = await Hive.openBox<PostModel>('posts');
-  if (box.isNotEmpty) return;
+  print('object');
+  // if (box.isNotEmpty) return;
+  print('object1');
 
   final posts = [
     Post(
@@ -65,9 +67,7 @@ class MyApp extends StatelessWidget {
       create: (context) => FeedCubit(repository)..loadFeed(),
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        ),
+        theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
         home: const FeedScreen(),
       ),
     );

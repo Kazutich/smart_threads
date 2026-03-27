@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:smart_threads/presentation/widgets/post_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_threads/presentation/bloc/feed_cubit/feed_cubit.dart';
 import 'package:smart_threads/presentation/bloc/feed_cubit/feed_state.dart';
+import 'package:smart_threads/presentation/screens/create_post_screen.dart';
+import 'package:smart_threads/presentation/widgets/post_card.dart';
 
 class FeedScreen extends StatelessWidget {
   const FeedScreen({super.key});
@@ -15,31 +16,75 @@ class FeedScreen extends StatelessWidget {
           'Smart Threads',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) {
+                    return BlocProvider.value(
+                      value: context.read<FeedCubit>(),
+                      child: CreatePostScreen(),
+                    );
+                  },
+                ),
+              );
+            },
+            icon: Icon(Icons.edit_outlined),
+          ),
+        ],
       ),
-      body: BlocBuilder<FeedCubit, FeedState>(
+      body: BlocConsumer<FeedCubit, FeedState>(
+        listener: (context, state) {},
         builder: (context, state) {
           if (state.status == FeedStatus.loading) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          if (state.status == FeedStatus.failure) {
-            return Center(child: Text(state.errorMessage ?? 'Error'));
+            return Center(child: CircularProgressIndicator());
           }
 
           if (state.posts.isEmpty) {
-            return const Center(child: Text('No posts'));
+            return Text('Список пуст');
           }
 
           return ListView.separated(
-            itemCount: state.posts.length,
             itemBuilder: (context, index) {
               final post = state.posts[index];
-              return PostCard(post: post);
+              return PostCard(
+                post: post,
+                onLike: () => context.read<FeedCubit>().likePost(post.id),
+              );
             },
-            separatorBuilder: (_, _) => const Divider(height: 1),
+            separatorBuilder: (_, _) => Divider(height: 1),
+            itemCount: state.posts.length,
           );
         },
       ),
     );
   }
 }
+
+
+
+  // final posts = [
+  //     Post(
+  //       id: '1',
+  //       content: 'Coffee was great!',
+  //       authorId: 'alex',
+  //       createdAt: '',
+  //       likes: 5,
+  //     ),
+  //     Post(
+  //       id: '2',
+  //       content: 'Had a great day!',
+  //       authorId: 'aigerim',
+  //       createdAt: '',
+  //       likes: 5,
+  //     ),
+  //     Post(
+  //       id: '3',
+  //       content: 'Developing Flutter app',
+  //       authorId: 'marat',
+  //       createdAt: '',
+  //       likes: 5,
+  //     ),
+  //   ];
