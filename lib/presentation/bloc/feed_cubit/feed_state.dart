@@ -3,13 +3,14 @@ import 'package:smart_threads/domain/entities/post.dart';
 
 part 'feed_state.freezed.dart';
 
-enum FeedStatus { initial, loading, success, failure }
+enum FeedStatus {initial, loading, success, failure}
+
 
 @freezed
 abstract class FeedState with _$FeedState {
   const factory FeedState({
     @Default(FeedStatus.initial) FeedStatus status,
-    @Default(<Post>[]) List<Post> posts,
+    @Default([]) List<Post> posts,
     String? errorMessage,
   }) = _FeedState;
 }

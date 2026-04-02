@@ -3,5 +3,9 @@ class User {
   final String username;
   final String avatarUrl;
 
-  User({required this.id, required this.username, required this.avatarUrl});
+  User({
+    required this.id,
+    required this.username,
+    required this.avatarUrl,
+  });
 }

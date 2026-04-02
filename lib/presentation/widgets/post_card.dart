@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:smart_threads/domain/entities/post.dart';
+import 'package:smart_threads/presentation/widgets/like_button.dart';
 
 class PostCard extends StatelessWidget {
-  const PostCard({super.key, required this.post, this.onLike});
+  const PostCard({super.key, required this.post});
 
   final Post post;
-  final VoidCallback? onLike;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsGeometry.symmetric(horizontal: 16, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -18,43 +18,18 @@ class PostCard extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   post.authorId,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 6),
                 Text(post.content, style: TextStyle(fontSize: 15)),
-                const SizedBox(height: 8),
+                const SizedBox(height: 10),
                 Row(
                   children: [
-                    GestureDetector(
-                      onTap: onLike,
-                      child: Row(
-                        children: [
-                          Icon(
-                            post.isLiked
-                                ? Icons.favorite
-                                : Icons.favorite_border,
-                            size: 20,
-                            color: post.isLiked
-                                ? const Color(0xFF7C3AED)
-                                : null,
-                          ),
-                          const SizedBox(width: 4),
-                          if (post.likes > 0)
-                            Text(
-                              '${post.likes}',
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: post.isLiked
-                                    ? const Color(0xFF7C3AED)
-                                    : null,
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
+                    LikeButton(post: post),
                     const SizedBox(width: 20),
                     const Icon(Icons.mode_comment_outlined, size: 20),
                     const SizedBox(width: 20),

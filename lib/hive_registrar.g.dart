@@ -3,16 +3,19 @@
 // Check in to version control
 
 import 'package:hive_ce/hive_ce.dart';
+import 'package:smart_threads/data/models/comment_model.dart';
 import 'package:smart_threads/data/models/post_model.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
+    registerAdapter(CommentModelAdapter());
     registerAdapter(PostModelAdapter());
   }
 }
 
 extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
+    registerAdapter(CommentModelAdapter());
     registerAdapter(PostModelAdapter());
   }
 }
