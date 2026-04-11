@@ -27,10 +27,10 @@ class FeedScreen extends StatelessWidget {
                     return BlocProvider.value(
                       value: context.read<FeedCubit>(),
                       child: BlocProvider(
-                        create: (context)
-                         => CreatePostCubit(context.read<FeedCubit>().repository),
+                        create: (context) => CreatePostCubit(
+                          context.read<FeedCubit>().repository,
+                        ),
                         child: CreatePostScreen(),
-                  
                       ),
                     );
                   },

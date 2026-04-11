@@ -23,7 +23,7 @@ Future<void> main() async {
 Future<void> _seedIfEmpty() async {
   final box = await Hive.openBox<PostModel>('posts');
   print('object');
- // if (box.isNotEmpty) return;
+  // if (box.isNotEmpty) return;
   print('object1');
 
   final posts = [
