@@ -22,7 +22,6 @@ class _CommentInputState extends State<CommentInput> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<CommentsCubit, CommentsState>(
-      // После успешной отправки очищаем поле
       listener: (context, state) {
         if (state.inputText.isEmpty && _controller.text.isNotEmpty) {
           _controller.clear();
@@ -42,7 +41,6 @@ class _CommentInputState extends State<CommentInput> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // CircleAvatar для текущего пользователя
                 CircleAvatar(
                   radius: 20,
                   backgroundColor: Colors.black,
@@ -57,7 +55,6 @@ class _CommentInputState extends State<CommentInput> {
 
                 const SizedBox(width: 10),
 
-                // Поле ввода комментария
                 Expanded(
                   child: TextFormField(
                     controller: _controller,
@@ -74,11 +71,10 @@ class _CommentInputState extends State<CommentInput> {
                       contentPadding: EdgeInsets.symmetric(vertical: 8),
                     ),
                     style: TextStyle(fontSize: 15),
-                    maxLines: null, // поддержка многострочного ввода
+                    maxLines: null,
                   ),
                 ),
 
-                // Кнопка отправки
                 AnimatedOpacity(
                   opacity: state.canSubmit ? 1.0 : 0.3,
                   duration: const Duration(milliseconds: 200),
